@@ -7,7 +7,7 @@
       <?php if ($this->uri->segment(1) != null) {
         // Mapear os segmentos para os nomes desejados, excluindo 'lancamentos'
         $map = [
-            'clientes' => 'Técnicos',
+            'clientes' => 'Usuários',
             'produtos' => 'Materiais',
             'servicos' => 'Serviços',
             'vendas' => 'Vendas',
