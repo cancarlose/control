@@ -85,7 +85,7 @@ $periodo = $this->input->get('periodo');
             </div>
 
             <div class="span2">
-                <label>Cliente/Fornecedor</label>
+                <label>Responsável</label>
                 <input id="cliente_busca" type="text" class="span12" name="cliente" value="<?= $this->input->get('cliente') ?>">
             </div>
 
@@ -107,7 +107,7 @@ $periodo = $this->input->get('periodo');
                         <tr>
                             <th>#</th>
                             <th>Tipo</th>
-                            <th>Cliente / Fornecedor</th>
+                            <th>Responsável</th>
                             <th>Descrição</th>
                             <th>Vencimento</th>
                             <th>Status</th>
@@ -275,7 +275,7 @@ echo number_format($soma_descontos_pagos, 2, ',', '.')?></strong></td>
             </div>
             <div class="span12" style="margin-left: 0">
                 <div class="span12" style="margin-left: 0">
-                    <label for="cliente">Cliente/Fornecedor*</label>
+                    <label for="cliente">Responsável*</label>
                     <input class="span12" id="cliente" type="text" name="cliente" value="" required />
                     <input class="span12" id="idCliente" type="hidden" name="idCliente" value="" />
                 </div>
