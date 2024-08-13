@@ -22,7 +22,7 @@ class Clientes extends MY_Controller
     public function gerenciar()
     {
         if (! $this->permission->checkPermission($this->session->userdata('permissao'), 'vCliente')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para visualizar Técnico.');
+            $this->session->set_flashdata('error', 'Você não tem permissão para visualizar Usuário.');
             redirect(base_url());
         }
 
@@ -49,7 +49,7 @@ class Clientes extends MY_Controller
     public function adicionar()
     {
         if (! $this->permission->checkPermission($this->session->userdata('permissao'), 'aCliente')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para adicionar Técnicos.');
+            $this->session->set_flashdata('error', 'Você não tem permissão para adicionar Usuários.');
             redirect(base_url());
         }
 
@@ -90,8 +90,8 @@ class Clientes extends MY_Controller
             ];
 
             if ($this->clientes_model->add('clientes', $data) == true) {
-                $this->session->set_flashdata('success', 'Técnico adicionado com sucesso!');
-                log_info('Adicionou um Técnico.');
+                $this->session->set_flashdata('success', 'Usuário adicionado com sucesso!');
+                log_info('Adicionou um Usuário.');
                 redirect(site_url('clientes/'));
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
@@ -111,7 +111,7 @@ class Clientes extends MY_Controller
         }
 
         if (! $this->permission->checkPermission($this->session->userdata('permissao'), 'eCliente')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para editar Técnicos.');
+            $this->session->set_flashdata('error', 'Você não tem permissão para editar Usuários.');
             redirect(base_url());
         }
 
@@ -162,8 +162,8 @@ class Clientes extends MY_Controller
             }
 
             if ($this->clientes_model->edit('clientes', $data, 'idClientes', $this->input->post('idClientes')) == true) {
-                $this->session->set_flashdata('success', 'Técnico editado com sucesso!');
-                log_info('Alterou um Técnico. ID' . $this->input->post('idClientes'));
+                $this->session->set_flashdata('success', 'Usuário editado com sucesso!');
+                log_info('Alterou um Usuário. ID' . $this->input->post('idClientes'));
                 redirect(site_url('clientes/editar/') . $this->input->post('idClientes'));
             } else {
                 $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro</p></div>';
@@ -184,7 +184,7 @@ class Clientes extends MY_Controller
         }
 
         if (! $this->permission->checkPermission($this->session->userdata('permissao'), 'vCliente')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para visualizar Técnico.');
+            $this->session->set_flashdata('error', 'Você não tem permissão para visualizar Usuário.');
             redirect(base_url());
         }
 
@@ -200,13 +200,13 @@ class Clientes extends MY_Controller
     public function excluir()
     {
         if (! $this->permission->checkPermission($this->session->userdata('permissao'), 'dCliente')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para excluir Técnicos.');
+            $this->session->set_flashdata('error', 'Você não tem permissão para excluir Usuários.');
             redirect(base_url());
         }
 
         $id = $this->input->post('id');
         if ($id == null) {
-            $this->session->set_flashdata('error', 'Erro ao tentar excluir Técnico.');
+            $this->session->set_flashdata('error', 'Erro ao tentar excluir Usuário.');
             redirect(site_url('clientes/gerenciar/'));
         }
 
@@ -222,9 +222,9 @@ class Clientes extends MY_Controller
         }
 
         $this->clientes_model->delete('clientes', 'idClientes', $id);
-        log_info('Removeu um Técnico. ID' . $id);
+        log_info('Removeu um Usuário. ID' . $id);
 
-        $this->session->set_flashdata('success', 'Técnico excluido com sucesso!');
+        $this->session->set_flashdata('success', 'Usuário excluido com sucesso!');
         redirect(site_url('clientes/gerenciar/'));
     }
 }

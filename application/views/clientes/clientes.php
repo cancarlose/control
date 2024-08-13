@@ -8,7 +8,7 @@
         <span class="icon">
             <i class="fas fa-user"></i>
         </span>
-        <h5>Técnicos</h5>
+        <h5>Usuários</h5>
     </div>
     <div class="span12" style="margin-left: 0">
         <?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'aCliente')) { ?>
@@ -16,7 +16,7 @@
                 <a href="<?= base_url() ?>index.php/clientes/adicionar" class="button btn btn-mini btn-success"
                     style="max-width: 165px">
                     <span class="button__icon"><i class='bx bx-plus-circle'></i></span><span class="button__text2">
-                        Técnicos
+                        Usuários
                     </span>
                 </a>
             </div>
@@ -56,7 +56,7 @@
                     <?php
                     if (!$results) {
                         echo '<tr>
-                    <td colspan="9">Nenhum Técnico Cadastrado</td>
+                    <td colspan="9">Nenhum Usuário Cadastrado</td>
                   </tr>';
                     }
                     foreach ($results as $r) {
@@ -71,7 +71,7 @@
 
                         // Verifica se é Fornecedor ou Cliente
                         if ($r->fornecedor == 1) {
-                            echo '<td><span class="label label-primary">Fornecedor</span></td>';
+                            echo '<td><span class="label label-primary">Auxiliar</span></td>';
                         } else {
                             echo '<td><span class="label label-success">Técnico</span></td>';
                         }
@@ -79,13 +79,13 @@
                         echo '<td>';
                         if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vCliente')) {
                             echo '<a href="' . base_url() . 'index.php/clientes/visualizar/' . $r->idClientes . '" style="margin-right: 1%" class="btn-nwe" title="Ver mais detalhes"><i class="bx bx-show bx-xs"></i></a>';
-                            echo '<a href="' . base_url() . 'index.php/mine?e=' . $r->email . '" target="new" style="margin-right: 1%" class="btn-nwe2" title="Área do Técnico"><i class="bx bx-key bx-xs"></i></a>';
+                            echo '<a href="' . base_url() . 'index.php/mine?e=' . $r->email . '" target="new" style="margin-right: 1%" class="btn-nwe2" title="Área do Usuário"><i class="bx bx-key bx-xs"></i></a>';
                         }
                         if ($this->permission->checkPermission($this->session->userdata('permissao'), 'eCliente')) {
-                            echo '<a href="' . base_url() . 'index.php/clientes/editar/' . $r->idClientes . '" style="margin-right: 1%" class="btn-nwe3" title="Editar Técnico"><i class="bx bx-edit bx-xs"></i></a>';
+                            echo '<a href="' . base_url() . 'index.php/clientes/editar/' . $r->idClientes . '" style="margin-right: 1%" class="btn-nwe3" title="Editar Usuário"><i class="bx bx-edit bx-xs"></i></a>';
                         }
                         if ($this->permission->checkPermission($this->session->userdata('permissao'), 'dCliente')) {
-                            echo '<a href="#modal-excluir" role="button" data-toggle="modal" cliente="' . $r->idClientes . '" style="margin-right: 1%" class="btn-nwe4" title="Excluir Técnico"><i class="bx bx-trash-alt bx-xs"></i></a>';
+                            echo '<a href="#modal-excluir" role="button" data-toggle="modal" cliente="' . $r->idClientes . '" style="margin-right: 1%" class="btn-nwe4" title="Excluir Usuário"><i class="bx bx-trash-alt bx-xs"></i></a>';
                         }
                         echo '</td>';
                         echo '</tr>';
@@ -104,11 +104,11 @@
     <form action="<?php echo base_url() ?>index.php/clientes/excluir" method="post">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h5 id="myModalLabel">Excluir Técnico</h5>
+            <h5 id="myModalLabel">Excluir Usuário</h5>
         </div>
         <div class="modal-body">
             <input type="hidden" id="idCliente" name="id" value="" />
-            <h5 style="text-align: center">Deseja realmente excluir este técnico?</h5>
+            <h5 style="text-align: center">Deseja realmente excluir este Usuário?</h5>
         </div>
         <div class="modal-footer" style="display:flex;justify-content: center">
             <button class="button btn btn-warning" data-dismiss="modal" aria-hidden="true"><span class="button__icon"><i

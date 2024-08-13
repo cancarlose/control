@@ -29,7 +29,7 @@
         <li class="card">
             <div class="grid-blak">
                 <a href="<?= site_url('clientes') ?>">
-                    <div class="numbers">Clientes</div>
+                    <div class="numbers">Usuários</div>
                     <div class="cardName">F1</div>
                 </a>
             </div>
@@ -164,7 +164,7 @@
                         <div><i class='bx bxs-group iconBx'></i></div>
                         <div>
                             <div class="cardName2"><?= $this->db->count_all('clientes'); ?></div>
-                            <div class="cardName">Técnicos</div>
+                            <div class="cardName">Usuários</div>
                         </div>
                     </a>
 
@@ -500,7 +500,7 @@
                 <thead>
                     <tr>
                         <th>N°</th>
-                        <th>Técnico</th>
+                        <th>Cliente/Técnico</th>
                         <th>Data Final</th>
                         <th>Status</th>
                         <th>Ações</th>
@@ -589,7 +589,7 @@
                 <thead>
                     <tr>
                         <th>N°</th>
-                        <th>Técnico</th>
+                        <th>Cliente/Técnico</th>
                         <th>Data Final</th>
                         <th>Status</th>
                         <th>Ações</th>
@@ -679,7 +679,7 @@
                 <thead>
                     <tr>
                         <th>N°</th>
-                        <th>Técnico</th>
+                        <th>Cliente/Técnico</th>
                         <th>Data Final</th>
                         <th>Status</th>
                         <th>Ações</th>
@@ -768,7 +768,7 @@
                 <thead>
                     <tr>
                         <th>N°</th>
-                        <th>Técnico</th>
+                        <th>Cliente/Técnico</th>
                         <th>Data Final</th>
                         <th>Status</th>
                         <th>Ações</th>
@@ -857,7 +857,7 @@
                 <thead>
                     <tr>
                         <th>N°</th>
-                        <th>Técnico</th>
+                        <th>Cliente/Técnico</th>
                         <th>Data Final</th>
                         <th>Status</th>
                         <th>Ações</th>
@@ -944,7 +944,7 @@
                 <thead>
                     <tr>
                         <th class="numero-col">N°</th>
-                        <th class="cliente-col">Técnico</th>
+                        <th class="cliente-col">Cliente/Técnico</th>
                         <th class="data-final-col">Data da Venda</th>
                         <th class="status-col">Status</th>
                         <th class="acoes-col">Ações</th>
@@ -1030,7 +1030,7 @@
                 <thead>
                     <tr>
                         <th class="tipo-col">Tipo</th>
-                        <th class="cliente-col">Técnico/Auxiliar</th>
+                        <th class="cliente-col">Cliente/Técnico</th>
                         <th class="descricao-col">Descrição</th>
                         <th class="vencimento-col">Vencimento</th>
                         <th class="valor-col">V.T. Pago</th>

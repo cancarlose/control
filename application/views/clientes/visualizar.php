@@ -1,7 +1,7 @@
 <div class="widget-box">
     <div class="widget-title" style="margin: 0;font-size: 1.1em">
         <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#tab1">Dados do Técnico</a></li>
+            <li class="active"><a data-toggle="tab" href="#tab1">Dados do Usuário</a></li>
             <li><a data-toggle="tab" href="#tab2">Ordens de Serviço</a></li>
             <li><a data-toggle="tab" href="#tab3">Vendas</a></li>
         </ul>
@@ -41,9 +41,9 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align: right"><strong>Tipo do Técnico</strong></td>
+                                    <td style="text-align: right"><strong>Tipo do Usuário</strong></td>
                                     <td>
-                                        <?php echo $result->fornecedor == true ? 'Fornecedor' : 'Cliente'; ?>
+                                        <?php echo $result->fornecedor == true ? 'Auxiliar' : 'Técnico'; ?>
                                     </td>
                                 </tr>
                                 </tbody>

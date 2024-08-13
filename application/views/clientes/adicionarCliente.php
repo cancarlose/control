@@ -83,7 +83,7 @@
                 <span class="icon">
                     <i class="fas fa-user"></i>
                 </span>
-                <h5>Cadastro de Técnico</h5>
+                <h5>Cadastro de Usuário</h5>
             </div>
             <?php if ($custom_error != '') {
                 echo '<div class="alert alert-danger">' . $custom_error . '</div>';
@@ -136,10 +136,18 @@
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label">Tipo de Técnico</label>
+                            <label class="control-label">Tipo de Usuário</label>
                             <div class="controls">
                                 <label for="fornecedor" class="btn btn-default">Auxiliar
                                     <input type="checkbox" id="fornecedor" name="fornecedor" class="badgebox" value="0">
+                                    <span class="badge">&check;</span>
+                                </label>
+                                <label for="cliente" class="btn btn-default">Cliente
+                                    <input type="checkbox" id="cliente" name="tipo_usuario[]" class="badgebox" value="cliente">
+                                    <span class="badge">&check;</span>
+                                </label>
+                                <label for="tecnico" class="btn btn-default">Técnico
+                                    <input type="checkbox" id="tecnico" name="tipo_usuario[]" class="badgebox" value="tecnico">
                                     <span class="badge">&check;</span>
                                 </label>
                             </div>
