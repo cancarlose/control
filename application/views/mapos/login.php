@@ -34,7 +34,7 @@
         // Irá retornar conforme o horário:
         ?>
       </h1>
-      <h2 class="h-two"> Ao Sistema de Controle de Ordens de Serviço</h2>
+      <h2 class="h-two"> Ao Sistema de Controle da EFGroup</h2>
       <img src="<?php echo base_url() ?>assets/img/dashboard-animate.svg" class="left-login-image" alt="Map-OS - Versão: <?= $this->config->item('app_version'); ?>">
     </div>
     <form class="form-vertical" id="formLogin" method="post" action="<?= site_url('login/verificarLogin') ?>">
