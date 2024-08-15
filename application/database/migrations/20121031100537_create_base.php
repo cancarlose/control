@@ -232,6 +232,16 @@ class Migration_create_base extends CI_Migration
                 'constraint' => 255,
                 'null' => true,
             ],
+            'cliente_auxiliar' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => true,
+            ],
+            'cliente_tecnico' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255,
+                'null' => true,
+            ],
             'forma_pgto' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100,

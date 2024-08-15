@@ -40,6 +40,8 @@ CREATE TABLE IF NOT EXISTS `clientes` (
   `contato` varchar(45) DEFAULT NULL,
   `complemento` varchar(45) DEFAULT NULL,
   `fornecedor` BOOLEAN NOT NULL DEFAULT 0,
+  `auxiliar` BOOLEAN NOT NULL DEFAULT 0,
+  `tecnico` BOOLEAN NOT NULL DEFAULT 0,
   PRIMARY KEY (`idClientes`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 1
@@ -149,6 +151,8 @@ CREATE TABLE IF NOT EXISTS `lancamentos` (
   `data_pagamento` DATE NULL DEFAULT NULL,
   `baixado` TINYINT(1) NULL DEFAULT 0,
   `cliente_fornecedor` VARCHAR(255) NULL DEFAULT NULL,
+  `cliente_auxiliar` VARCHAR(255) NULL DEFAULT NULL,
+  `cliente_tecnico` VARCHAR(255) NULL DEFAULT NULL,
   `forma_pgto` VARCHAR(100) NULL DEFAULT NULL,
   `tipo` VARCHAR(45) NULL DEFAULT NULL,
   `anexo` VARCHAR(250) NULL,
