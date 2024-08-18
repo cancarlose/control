@@ -25,7 +25,7 @@
             } ?>
 
             <div class="span3">
-                <input type="text" name="pesquisa" id="pesquisa" placeholder="Nome do cliente a pesquisar" class="span12" value="<?=set_value('pesquisa')?>">
+                <input type="text" name="pesquisa" id="pesquisa" placeholder="Nome do usuário a pesquisar" class="span12" value="<?=set_value('pesquisa')?>">
             </div>
             <div class="span2">
                 <select name="status" id="" class="span12">
@@ -61,7 +61,7 @@
                     <thead>
                         <tr>
                             <th>N°</th>
-                            <th>Cliente</th>
+                            <th>Cliente/Técnico</th>
                             <th class="ph1">Responsável</th>
                             <th>Data Inicial</th>
                             <th class="ph2">Data Final</th>

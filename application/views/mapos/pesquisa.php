@@ -61,47 +61,68 @@
         </div>
         <!--Clientes-->
         <div class="span6">
-            <div class="widget-box" style="min-height: 200px">
-                <div class="widget-title" style="margin: -20px 0 0">
-                    <span class="icon">
-                        <i class="fas fa-user"></i>
-                    </span>
-                    <h5>Clientes</h5>
-                </div>
-                <div class="widget-content nopadding tab-content">
-                    <table class="table table-bordered ">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nome</th>
-                            <th>CPF/CNPJ</th>
-                            <th>Cliente / Fornecedor</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        if ($clientes == null) {
-                            echo '<tr><td colspan="4">Nenhum cliente foi encontrado.</td></tr>';
-                        }
-                        foreach ($clientes as $r) {
-                            echo '<tr>';
-                            echo '<td>' . $r->idClientes . '</td>';
-                            echo '<td>' . $r->nomeCliente . '</td>';
-                            echo '<td>' . $r->documento . '</td>';
-                            $cor = ($r->fornecedor ? '#CDB380' : '#CD0000');
-                            echo '<td><span class="badge" style="background-color: ' . $cor . '; border-color: ' . $cor . '">' . ($r->fornecedor ? 'Fornecedor' : 'Cliente') . '</span> </td>';
-                            echo '<td>';
-                            if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vCliente')) {
-                                echo '<a style="margin-right: 1%" href="' . base_url() . 'index.php/clientes/visualizar/' . $r->idClientes . '" class="btn tip-top" title="Ver mais detalhes"><i class="fas fa-eye"></i></a>';
-                            }
-                            if ($this->permission->checkPermission($this->session->userdata('permissao'), 'eCliente')) {
-                                echo '<a href="' . base_url() . 'index.php/clientes/editar/' . $r->idClientes . '" class="btn btn-info tip-top" title="Editar Cliente"><i class="fas fa-edit"></i></a>';
-                            }
-                            echo '</td>';
-                            echo '</tr>';
-                        }
-        ?>
+    <div class="widget-box" style="min-height: 200px">
+        <div class="widget-title" style="margin: -20px 0 0">
+            <span class="icon">
+                <i class="fas fa-user"></i>
+            </span>
+            <h5>Clientes</h5>
+        </div>
+        <div class="widget-content nopadding tab-content">
+            <table class="table table-bordered ">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>CPF/CNPJ</th>
+                    <th>Categoria</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php
+                if ($clientes == null) {
+                    echo '<tr><td colspan="5">Nenhum cliente foi encontrado.</td></tr>';
+                }
+                foreach ($clientes as $r) {
+                    echo '<tr>';
+                    echo '<td>' . $r->idClientes . '</td>';
+                    echo '<td>' . $r->nomeCliente . '</td>';
+                    echo '<td>' . $r->documento . '</td>';
+
+                    // Definição da cor e categoria com base no tipo de cliente
+                    $categoria = 'Cliente';
+                    $cor = '#CD0000'; // Vermelho padrão para Cliente
+
+                    if ($r->fornecedor) {
+                        $categoria = 'Fornecedor';
+                        $cor = '#CDB380'; // Cor para Fornecedor
+                    } elseif ($r->auxiliar) {
+                        $categoria = 'Auxiliar';
+                        $cor = '#FFC107'; // Cor para Auxiliar
+                    } elseif ($r->tecnico) {
+                        $categoria = 'Técnico';
+                        $cor = '#17A2B8'; // Cor para Técnico
+                    }
+
+                    echo '<td><span class="badge" style="background-color: ' . $cor . '; border-color: ' . $cor . '">' . $categoria . '</span></td>';
+                    echo '<td>';
+                    if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vCliente')) {
+                        echo '<a style="margin-right: 1%" href="' . base_url() . 'index.php/clientes/visualizar/' . $r->idClientes . '" class="btn tip-top" title="Ver mais detalhes"><i class="fas fa-eye"></i></a>';
+                    }
+                    if ($this->permission->checkPermission($this->session->userdata('permissao'), 'eCliente')) {
+                        echo '<a href="' . base_url() . 'index.php/clientes/editar/' . $r->idClientes . '" class="btn btn-info tip-top" title="Editar Cliente"><i class="fas fa-edit"></i></a>';
+                    }
+                    echo '</td>';
+                    echo '</tr>';
+                }
+                ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
                         <tr>
                         </tr>
                         </tbody>

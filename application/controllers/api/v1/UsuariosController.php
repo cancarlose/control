@@ -21,7 +21,7 @@ class UsuariosController extends REST_Controller
         if (! $this->permission->checkPermission($this->logged_user()->level, 'cUsuario')) {
             $this->response([
                 'status' => false,
-                'message' => 'Você não está autorizado a Visualizar Usuários',
+                'message' => 'Você não está autorizado a Visualizar os usuários',
             ], REST_Controller::HTTP_UNAUTHORIZED);
         }
 
@@ -42,7 +42,7 @@ class UsuariosController extends REST_Controller
             if ($usuarios) {
                 $this->response([
                     'status' => true,
-                    'message' => 'Lista de Usuários',
+                    'message' => 'Lista de usuários',
                     'result' => $usuarios,
                 ], REST_Controller::HTTP_OK);
             }

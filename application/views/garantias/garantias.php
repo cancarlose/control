@@ -24,7 +24,7 @@
                     <th>Data</th>
                     <th>Ref. Garantia</th>
                     <th>Termo de Garantia</th>
-                    <th>Usuario</th>
+                    <th>Responsável</th>
                     <th>Ações</th>
                 </tr>
             </thead>

@@ -65,21 +65,35 @@ class Relatorios_model extends CI_Model
     {
         $whereData = '';
         if ($dataInicial != null) {
-            $whereData .= 'AND dataCadastro >= ' . $this->db->escape($dataInicial);
+            $whereData .= ' AND dataCadastro >= ' . $this->db->escape($dataInicial);
         }
         if ($dataFinal != null) {
-            $whereData .= 'AND dataCadastro <= ' . $this->db->escape($dataFinal);
+            $whereData .= ' AND dataCadastro <= ' . $this->db->escape($dataFinal);
         }
         if ($tipo != null) {
-            $whereData .= 'AND fornecedor = ' . $this->db->escape($tipo);
+            switch ($tipo) {
+                case 'fornecedor':
+                    $whereData .= ' AND fornecedor = 1';
+                    break;
+                case 'tecnico':
+                    $whereData .= ' AND tecnico = 1';
+                    break;
+                case 'auxiliar':
+                    $whereData .= ' AND auxiliar = 1';
+                    break;
+                default:
+                    // No filter for unknown types
+                    break;
+            }
         }
-        $query = "SELECT idClientes, nomeCliente, sexo, pessoa_fisica,
-        documento, telefone, celular, contato, email, fornecedor,
-        dataCadastro, rua, numero, complemento, bairro, cidade, estado,
-        cep FROM clientes WHERE dataCadastro $whereData ORDER BY nomeCliente";
 
-        return $this->db->query($query, [$dataInicial, $dataFinal])->result();
-    }
+        $query = "SELECT idClientes, nomeCliente, sexo, pessoa_fisica,
+        documento, telefone, celular, contato, email, fornecedor, auxiliar, tecnico,
+        dataCadastro, rua, numero, complemento, bairro, cidade, estado, cep
+        FROM clientes WHERE 1=1 $whereData ORDER BY nomeCliente";
+    
+        return $this->db->query($query)->result();
+    }   
 
     public function clientesRapid($array = false)
     {

@@ -20,7 +20,7 @@ class ClientesController extends REST_Controller
         if (! $this->permission->checkPermission($this->logged_user()->level, 'vCliente')) {
             $this->response([
                 'status' => false,
-                'message' => 'Você não está autorizado a Visualizar Clientes',
+                'message' => 'Você não está autorizado a Visualizar Usuários',
             ], REST_Controller::HTTP_UNAUTHORIZED);
         }
 
@@ -37,7 +37,7 @@ class ClientesController extends REST_Controller
             if ($clientes) {
                 $this->response([
                     'status' => true,
-                    'message' => 'Lista de Clientes',
+                    'message' => 'Lista de Usuários',
                     'result' => $clientes,
                 ], REST_Controller::HTTP_OK);
             }
@@ -50,21 +50,21 @@ class ClientesController extends REST_Controller
                 $cliente->ordensServicos = $this->clientes_model->getOsByCliente($id);
                 $this->response([
                     'status' => true,
-                    'message' => 'Detalhes do Cliente',
+                    'message' => 'Detalhes do Usuário',
                     'result' => $cliente,
                 ], REST_Controller::HTTP_OK);
             }
 
             $this->response([
                 'status' => false,
-                'message' => 'Nenhum cliente localizado com esse ID.',
+                'message' => 'Nenhum usuário localizado com esse ID.',
                 'result' => null,
             ], REST_Controller::HTTP_OK);
         }
 
         $this->response([
             'status' => false,
-            'message' => 'Nenhum cliente localizado.',
+            'message' => 'Nenhum usuário localizado.',
             'result' => null,
         ], REST_Controller::HTTP_OK);
     }
@@ -75,7 +75,7 @@ class ClientesController extends REST_Controller
         if (! $this->permission->checkPermission($this->logged_user()->level, 'aCliente')) {
             $this->response([
                 'status' => false,
-                'message' => 'Você não está autorizado a Adicionar Clientes!',
+                'message' => 'Você não está autorizado a Adicionar Usuários!',
             ], REST_Controller::HTTP_UNAUTHORIZED);
         }
 
@@ -112,19 +112,21 @@ class ClientesController extends REST_Controller
             'cep' => $this->post('cep', true),
             'dataCadastro' => date('Y-m-d'),
             'fornecedor' => $this->post('fornecedor', true) == true ? 1 : 0,
+            'auxiliar' => $this->post('auxiliar', true) == true ? 1 : 0,
+            'tecnico' => $this->post('tecnico', true) == true ? 1 : 0,
         ];
 
         if ($this->clientes_model->add('clientes', $data) == true) {
             $this->response([
                 'status' => true,
-                'message' => 'Cliente adicionado com sucesso!',
+                'message' => 'Usuário adicionado com sucesso!',
                 'result' => $this->clientes_model->get('clientes', '*', "telefone = '{$data['telefone']}'", 1, 0, true),
             ], REST_Controller::HTTP_CREATED);
         }
 
         $this->response([
             'status' => false,
-            'message' => 'Não foi possível adicionar o Cliente.',
+            'message' => 'Não foi possível adicionar o Usuário.',
         ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
 
@@ -134,7 +136,7 @@ class ClientesController extends REST_Controller
         if (! $this->permission->checkPermission($this->logged_user()->level, 'eCliente')) {
             $this->response([
                 'status' => false,
-                'message' => 'Você não está autorizado a Editar Clientes!',
+                'message' => 'Você não está autorizado a Editar Usuários!',
             ], REST_Controller::HTTP_UNAUTHORIZED);
         }
 
@@ -160,6 +162,8 @@ class ClientesController extends REST_Controller
             'estado' => $this->put('estado', true),
             'cep' => $this->put('cep', true),
             'fornecedor' => $this->put('fornecedor', true) == true ? 1 : 0,
+            'auxiliar' => $this->post('auxiliar', true) == true ? 1 : 0,
+            'tecnico' => $this->post('tecnico', true) == true ? 1 : 0,
         ];
 
         if ($this->put('senha')) {
@@ -169,14 +173,14 @@ class ClientesController extends REST_Controller
         if ($this->clientes_model->edit('clientes', $data, 'idClientes', $id) == true) {
             $this->response([
                 'status' => true,
-                'message' => 'Cliente editado com sucesso!',
+                'message' => 'Usuário editado com sucesso!',
                 'result' => $this->clientes_model->getById($id),
             ], REST_Controller::HTTP_OK);
         }
 
         $this->response([
             'status' => false,
-            'message' => 'Não foi possível editar o Cliente.',
+            'message' => 'Não foi possível editar o Usuário.',
         ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
 
@@ -186,14 +190,14 @@ class ClientesController extends REST_Controller
         if (! $this->permission->checkPermission($this->logged_user()->level, 'dCliente')) {
             $this->response([
                 'status' => false,
-                'message' => 'Você não está autorizado a Apagar Clientes!',
+                'message' => 'Você não está autorizado a Apagar Usuários!',
             ], REST_Controller::HTTP_UNAUTHORIZED);
         }
 
         if (! $id) {
             $this->response([
                 'status' => false,
-                'message' => 'Informe o ID do cliente!',
+                'message' => 'Informe o ID do usuário!',
             ], REST_Controller::HTTP_BAD_REQUEST);
         }
 
@@ -208,16 +212,16 @@ class ClientesController extends REST_Controller
         }
 
         if ($this->clientes_model->delete('clientes', 'idClientes', $id) == true) {
-            $this->log_app('Removeu um cliente. ID' . $id);
+            $this->log_app('Removeu um usuário. ID' . $id);
             $this->response([
                 'status' => true,
-                'message' => 'Cliente excluído com sucesso!',
+                'message' => 'Usuário excluído com sucesso!',
             ], REST_Controller::HTTP_OK);
         }
 
         $this->response([
             'status' => false,
-            'message' => 'Não foi possível excluir o Cliente.',
+            'message' => 'Não foi possível excluir o Usuário.',
         ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
     }
 }

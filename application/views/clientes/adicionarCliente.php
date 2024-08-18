@@ -138,16 +138,16 @@
                         <div class="control-group">
                             <label class="control-label">Tipo de Usuário</label>
                             <div class="controls">
-                                <label for="fornecedor" class="btn btn-default">Auxiliar
+                                <label for="fornecedor" class="btn btn-default">Fornecedor
                                     <input type="checkbox" id="fornecedor" name="fornecedor" class="badgebox" value="0">
                                     <span class="badge">&check;</span>
                                 </label>
-                                <label for="cliente" class="btn btn-default">Cliente
-                                    <input type="checkbox" id="cliente" name="tipo_usuario[]" class="badgebox" value="cliente">
+                                <label for="auxiliar" class="btn btn-default">Auxiliar
+                                    <input type="checkbox" id="auxiliar" name="auxiliar" class="badgebox" value="0">
                                     <span class="badge">&check;</span>
                                 </label>
                                 <label for="tecnico" class="btn btn-default">Técnico
-                                    <input type="checkbox" id="tecnico" name="tipo_usuario[]" class="badgebox" value="tecnico">
+                                    <input type="checkbox" id="tecnico" name="tecnico" class="badgebox" value="0">
                                     <span class="badge">&check;</span>
                                 </label>
                             </div>

@@ -93,6 +93,8 @@ class Relatorios extends MY_Controller
                 'Contato' => 'string',
                 'E-mail' => 'string',
                 'Fornecedor' => 'string',
+                'Auxiliar' => 'string',
+                'Tecnico' => 'string',
                 'Data de Cadastro' => 'YYYY-MM-DD',
                 'Rua' => 'string',
                 'Número' => 'string',
@@ -107,11 +109,28 @@ class Relatorios extends MY_Controller
 
             $writer->writeSheetHeader('Sheet1', $cabecalho);
             foreach ($clientes as $cliente) {
+                // Tratamento para fornecedor
                 if ($cliente['fornecedor']) {
                     $cliente['fornecedor'] = 'sim';
                 } else {
                     $cliente['fornecedor'] = 'não';
                 }
+                
+                // Tratamento para técnico
+                if ($cliente['tecnico']) {
+                    $cliente['tecnico'] = 'sim';
+                } else {
+                    $cliente['tecnico'] = 'não';
+                }
+                
+                // Tratamento para auxiliar
+                if ($cliente['auxiliar']) {
+                    $cliente['auxiliar'] = 'sim';
+                } else {
+                    $cliente['auxiliar'] = 'não';
+                }
+          
+                // Tratamento para pessoa física
                 if ($cliente['pessoa_fisica']) {
                     $cliente['pessoa_fisica'] = 'sim';
                 } else {
@@ -129,7 +148,7 @@ class Relatorios extends MY_Controller
 
         $data['clientes'] = $this->Relatorios_model->clientesRapid();
         $data['emitente'] = $this->Mapos_model->getEmitente();
-        $data['title'] = 'Relatório de Clientes';
+        $data['title'] = 'Relatório de Usuários';
         $data['topo'] = $this->load->view('relatorios/imprimir/imprimirTopo', $data, true);
 
         $this->load->helper('mpdf');
@@ -141,13 +160,13 @@ class Relatorios extends MY_Controller
     public function produtosRapid()
     {
         if (! $this->permission->checkPermission($this->session->userdata('permissao'), 'rProduto')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para gerar relatórios de produtos.');
+            $this->session->set_flashdata('error', 'Você não tem permissão para gerar relatórios de materiais.');
             redirect(base_url());
         }
 
         $data['produtos'] = $this->Relatorios_model->produtosRapid();
         $data['emitente'] = $this->Mapos_model->getEmitente();
-        $data['title'] = 'Relatório de Produtos';
+        $data['title'] = 'Relatório de Materiais';
         $data['topo'] = $this->load->view('relatorios/imprimir/imprimirTopo', $data, true);
 
         $this->load->helper('mpdf');
@@ -158,13 +177,13 @@ class Relatorios extends MY_Controller
     public function produtosRapidMin()
     {
         if (! $this->permission->checkPermission($this->session->userdata('permissao'), 'rProduto')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para gerar relatórios de produtos.');
+            $this->session->set_flashdata('error', 'Você não tem permissão para gerar relatórios de materiais.');
             redirect(base_url());
         }
 
         $data['produtos'] = $this->Relatorios_model->produtosRapidMin();
         $data['emitente'] = $this->Mapos_model->getEmitente();
-        $data['title'] = 'Relatório de Produtos Com Estoque Mínimo';
+        $data['title'] = 'Relatório de Materiais Com Estoque Mínimo';
         $data['topo'] = $this->load->view('relatorios/imprimir/imprimirTopo', $data, true);
 
         $this->load->helper('mpdf');
@@ -175,7 +194,7 @@ class Relatorios extends MY_Controller
     public function produtosCustom()
     {
         if (! $this->permission->checkPermission($this->session->userdata('permissao'), 'rProduto')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para gerar relatórios de produtos.');
+            $this->session->set_flashdata('error', 'Você não tem permissão para gerar relatórios de materiais.');
             redirect(base_url());
         }
 
@@ -186,7 +205,7 @@ class Relatorios extends MY_Controller
 
         $data['produtos'] = $this->Relatorios_model->produtosCustom($precoInicial, $precoFinal, $estoqueInicial, $estoqueFinal);
         $data['emitente'] = $this->Mapos_model->getEmitente();
-        $data['title'] = 'Relatório de Produtos Customizado';
+        $data['title'] = 'Relatório de Materiais Customizado';
         $data['topo'] = $this->load->view('relatorios/imprimir/imprimirTopo', $data, true);
 
         $this->load->helper('mpdf');
@@ -241,10 +260,10 @@ class Relatorios extends MY_Controller
             $vendas = $this->Relatorios_model->skuRapid(true);
 
             $cabecalho = [
-                'ID Cliente' => 'integer',
-                'Nome Cliente' => 'string',
-                'ID Produto' => 'integer',
-                'Descrição Produto' => 'string',
+                'ID Usuário' => 'integer',
+                'Nome Usuário' => 'string',
+                'ID Material' => 'integer',
+                'Descrição Material' => 'string',
                 'Quantidade' => 'integer',
                 'ID Relacionado' => 'integer',
                 'Data' => 'YYYY-MM-DD',
@@ -295,10 +314,10 @@ class Relatorios extends MY_Controller
             $vendas = $this->Relatorios_model->skuCustom($dataInicial, $dataFinal, $cliente, $origem, true);
 
             $cabecalho = [
-                'ID Cliente' => 'integer',
-                'Nome Cliente' => 'string',
-                'ID Produto' => 'integer',
-                'Descrição Produto' => 'string',
+                'ID Usuário' => 'integer',
+                'Nome Usuário' => 'string',
+                'ID Material' => 'integer',
+                'Descrição Material' => 'string',
                 'Quantidade' => 'integer',
                 'ID Relacionado' => 'integer',
                 'Data' => 'YYYY-MM-DD',
@@ -665,6 +684,8 @@ class Relatorios extends MY_Controller
                     'data_pagamento' => $item['data_pagamento'],
                     'baixado' => $item['baixado'],
                     'cliente_fornecedor' => $item['cliente_fornecedor'],
+                    'cliente_auxiliar' => $item['cliente_auxiliar'],
+                    'cliente_tecnico' => $item['cliente_tecnico'],
                     'forma_pgto' => $item['forma_pgto'],
                     'tipo' => $item['tipo'],
                 ];
@@ -681,6 +702,8 @@ class Relatorios extends MY_Controller
                 'Data Pagamento' => 'YYYY-MM-DD',
                 'Baixado' => 'integer',
                 'Cliente/Fornecedor' => 'string',
+                'Auxiliar' => 'string',
+                'Técnico' => 'string',
                 'Forma Pagamento' => 'string',
                 'Tipo' => 'string',
             ];
@@ -737,6 +760,8 @@ class Relatorios extends MY_Controller
                     'data_pagamento' => $item['data_pagamento'],
                     'baixado' => $item['baixado'],
                     'cliente_fornecedor' => $item['cliente_fornecedor'],
+                    'cliente_auxiliar' => $item['cliente_auxiliar'],
+                    'cliente_tecnico' => $item['cliente_tecnico'],
                     'forma_pgto' => $item['forma_pgto'],
                     'tipo' => $item['tipo'],
                 ];
@@ -753,6 +778,8 @@ class Relatorios extends MY_Controller
                 'Data Pagamento' => 'YYYY-MM-DD',
                 'Baixado' => 'integer',
                 'Cliente/Fornecedor' => 'string',
+                'Auxiliar' => 'string',
+                'Técnico' => 'string',
                 'Forma Pagamento' => 'string',
                 'Tipo' => 'string',
             ];

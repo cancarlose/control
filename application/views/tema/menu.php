@@ -45,8 +45,8 @@
                         echo 'active';
                     }; ?>">
                         <a class="tip-bottom" title="" href="<?= site_url('clientes') ?>"><i class='bx bx-user iconX'></i>
-                            <span class="title">Técnico</span>
-                            <span class="title-tooltip">Técnicos</span>
+                            <span class="title">Usuários</span>
+                            <span class="title-tooltip">Usuários</span>
                         </a>
                     </li>
                 <?php } ?>

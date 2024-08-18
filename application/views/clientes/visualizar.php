@@ -9,48 +9,58 @@
     <div class="widget-content tab-content">
         <div id="tab1" class="tab-pane active" style="min-height: 300px">
             <div class="accordion" id="collapse-group">
-                <div class="accordion-group widget-box">
-                    <div class="accordion-heading">
-                        <div class="widget-title">
-                            <a data-parent="#collapse-group" href="#collapseGOne" data-toggle="collapse">
-                                <span><i class='bx bx-user icon-cli' ></i></span>
-                                <h5 style="padding-left: 28px">Dados Pessoais</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="collapse in accordion-body" id="collapseGOne">
-                        <div class="widget-content">
-                            <table class="table table-bordered" style="border: 1px solid #ddd">
-                                <tbody>
-                                <tr>
-                                    <td style="text-align: right; width: 30%"><strong>Nome</strong></td>
-                                    <td>
-                                        <?php echo $result->nomeCliente ?>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: right"><strong>Documento</strong></td>
-                                    <td>
-                                        <?php echo $result->documento ?>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: right"><strong>Data de Cadastro</strong></td>
-                                    <td>
-                                        <?php echo date('d/m/Y', strtotime($result->dataCadastro)) ?>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="text-align: right"><strong>Tipo do Usuário</strong></td>
-                                    <td>
-                                        <?php echo $result->fornecedor == true ? 'Auxiliar' : 'Técnico'; ?>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
+            <div class="accordion-group widget-box">
+                <div class="accordion-heading">
+                    <div class="widget-title">
+                        <a data-parent="#collapse-group" href="#collapseGOne" data-toggle="collapse">
+                            <span><i class='bx bx-user icon-cli'></i></span>
+                            <h5 style="padding-left: 28px">Dados Pessoais</h5>
+                        </a>
                     </div>
                 </div>
+                <div class="collapse in accordion-body" id="collapseGOne">
+                    <div class="widget-content">
+                        <table class="table table-bordered" style="border: 1px solid #ddd">
+                            <tbody>
+                            <tr>
+                                <td style="text-align: right; width: 30%"><strong>Nome</strong></td>
+                                <td>
+                                    <?php echo htmlspecialchars($result->nomeCliente); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right"><strong>Documento</strong></td>
+                                <td>
+                                    <?php echo htmlspecialchars($result->documento); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right"><strong>Data de Cadastro</strong></td>
+                                <td>
+                                    <?php echo date('d/m/Y', strtotime($result->dataCadastro)); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right"><strong>Tipo do Usuário</strong></td>
+                                <td>
+                                    <?php
+                                    if ($result->fornecedor == 1) {
+                                        echo 'Fornecedor';
+                                    } elseif ($result->auxiliar == 1) {
+                                        echo 'Auxiliar';
+                                    } elseif ($result->tecnico == 1) {
+                                        echo 'Técnico';
+                                    } else {
+                                        echo 'Cliente';
+                                    }
+                                    ?>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
                 <div class="accordion-group widget-box">
                     <div class="accordion-heading">
                         <div class="widget-title">

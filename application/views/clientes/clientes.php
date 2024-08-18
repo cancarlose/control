@@ -69,11 +69,15 @@
                         echo '<td>' . $r->celular . '</td>';
                         echo '<td>' . $r->email . '</td>';
 
-                        // Verifica se é Fornecedor ou Cliente
+                        // Verifica o tipo
                         if ($r->fornecedor == 1) {
-                            echo '<td><span class="label label-primary">Auxiliar</span></td>';
+                            echo '<td><span class="label label-primary">Fornecedor</span></td>';
+                        // } elseif ($r->auxiliar == 2 ) { 
+                        //     echo '<td><span class="label label-secondary">Auxiliar</span></td>';
+                        // } elseif ($r->tecnico == 3 ) {
+                        //     echo '<td><span class="label label-third">Técnico</span></td>';
                         } else {
-                            echo '<td><span class="label label-success">Técnico</span></td>';
+                            echo '<td><span class="label label-success">Cliente</span></td>';
                         }
 
                         echo '<td>';

@@ -44,10 +44,12 @@
                         </div>
                         <div class="span12 well" style="margin-left: 0">
                         <div class="span12">
-                            <label for="">Tipo de técnico:</label>
+                            <label for="">Tipo de usuário:</label>
                             <select name="tipocliente" class="span12">
-                                <option value="0">técnico</option>
-                                <option value="1">auxiliar</option>
+                                <option value="0">cliente</option>
+                                <option value="1">fornecedor</option>
+                                <option value="2">auxiliar</option>
+                                <option value="3">técnico</option>
                             </select>
                         </div>
                     </div>

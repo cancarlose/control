@@ -299,6 +299,16 @@ $config = [
             'rules' => 'required|trim',
         ],
         [
+            'field' => 'auxiliar',
+            'label' => 'Auxiliar',
+            'rules' => 'required|trim',
+        ],
+        [
+            'field' => 'tecnico',
+            'label' => 'Tecnico',
+            'rules' => 'required|trim',
+        ],
+        [
             'field' => 'tipo',
             'label' => 'Tipo',
             'rules' => 'required|trim',

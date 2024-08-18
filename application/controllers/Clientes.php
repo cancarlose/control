@@ -22,7 +22,7 @@ class Clientes extends MY_Controller
     public function gerenciar()
     {
         if (! $this->permission->checkPermission($this->session->userdata('permissao'), 'vCliente')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para visualizar Usuário.');
+            $this->session->set_flashdata('error', 'Você não tem permissão para visualizar os usuários.');
             redirect(base_url());
         }
 
@@ -49,7 +49,7 @@ class Clientes extends MY_Controller
     public function adicionar()
     {
         if (! $this->permission->checkPermission($this->session->userdata('permissao'), 'aCliente')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para adicionar Usuários.');
+            $this->session->set_flashdata('error', 'Você não tem permissão para adicionar um usuário.');
             redirect(base_url());
         }
 
@@ -67,7 +67,7 @@ class Clientes extends MY_Controller
         }
 
         if ($this->form_validation->run('clientes') == false) {
-            $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">' . validation_errors() . '</div>' : false);
+            $this->data['custom_error'] = (validation_errors() ? '<div class="form_error">Erro ao adicionar um novo usuário' . validation_errors() . '</div>' : false);
         } else {
             $data = [
                 'nomeCliente' => set_value('nomeCliente'),
@@ -87,14 +87,21 @@ class Clientes extends MY_Controller
                 'cep' => set_value('cep'),
                 'dataCadastro' => date('Y-m-d'),
                 'fornecedor' => (set_value('fornecedor') == true ? 1 : 0),
+                'auxiliar' => (set_value('auxiliar') == true ? 1 : 0),
+                'tecnico' => (set_value('tecnico') == true ? 1 : 0),
             ];
 
-            if ($this->clientes_model->add('clientes', $data) == true) {
-                $this->session->set_flashdata('success', 'Usuário adicionado com sucesso!');
-                log_info('Adicionou um Usuário.');
-                redirect(site_url('clientes/'));
-            } else {
-                $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro.</p></div>';
+            try {
+                if ($this->clientes_model->add('clientes', $data) == true) {
+                    $this->session->set_flashdata('success', 'Usuário adicionado com sucesso!');
+                    log_info('Adicionou um Usuário.');
+                    redirect(site_url('clientes/'));
+                } else {
+                    throw new Exception('Erro desconhecido ao tentar adicionar o usuário.');
+                }
+            } catch (Exception $e) {
+                $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro ao tentar adicionar o usuário: ' . $e->getMessage() . '</p></div>';
+                log_message('error', 'Erro ao adicionar usuário: ' . $e->getMessage());
             }
         }
 
@@ -111,7 +118,7 @@ class Clientes extends MY_Controller
         }
 
         if (! $this->permission->checkPermission($this->session->userdata('permissao'), 'eCliente')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para editar Usuários.');
+            $this->session->set_flashdata('error', 'Você não tem permissão para editar o usuário.');
             redirect(base_url());
         }
 
@@ -141,6 +148,8 @@ class Clientes extends MY_Controller
                     'estado' => $this->input->post('estado'),
                     'cep' => $this->input->post('cep'),
                     'fornecedor' => (set_value('fornecedor') == true ? 1 : 0),
+                    'auxiliar' => (set_value('auxiliar') == true ? 1 : 0),
+                    'tecnico' => (set_value('tecnico') == true ? 1 : 0),
                 ];
             } else {
                 $data = [
@@ -158,15 +167,22 @@ class Clientes extends MY_Controller
                     'estado' => $this->input->post('estado'),
                     'cep' => $this->input->post('cep'),
                     'fornecedor' => (set_value('fornecedor') == true ? 1 : 0),
+                    'auxiliar' => (set_value('auxiliar') == true ? 1 : 0),
+                    'tecnico' => (set_value('tecnico') == true ? 1 : 0),
                 ];
             }
 
-            if ($this->clientes_model->edit('clientes', $data, 'idClientes', $this->input->post('idClientes')) == true) {
-                $this->session->set_flashdata('success', 'Usuário editado com sucesso!');
-                log_info('Alterou um Usuário. ID' . $this->input->post('idClientes'));
-                redirect(site_url('clientes/editar/') . $this->input->post('idClientes'));
-            } else {
-                $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro</p></div>';
+            try {
+                if ($this->clientes_model->edit('clientes', $data, 'idClientes', $this->input->post('idClientes')) == true) {
+                    $this->session->set_flashdata('success', 'Usuário editado com sucesso!');
+                    log_info('Alterou um Usuário. ID' . $this->input->post('idClientes'));
+                    redirect(site_url('clientes/editar/') . $this->input->post('idClientes'));
+                } else {
+                    throw new Exception('Erro ao tentar editar o usuário.');
+                }
+            } catch (Exception $e) {
+                $this->data['custom_error'] = '<div class="form_error"><p>Ocorreu um erro ao tentar editar o usuário. Por favor, tente novamente ou entre em contato com o suporte.</p></div>';
+                log_message('error', $e->getMessage());
             }
         }
 
@@ -184,7 +200,7 @@ class Clientes extends MY_Controller
         }
 
         if (! $this->permission->checkPermission($this->session->userdata('permissao'), 'vCliente')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para visualizar Usuário.');
+            $this->session->set_flashdata('error', 'Você não tem permissão para visualizar o usuário.');
             redirect(base_url());
         }
 
@@ -200,13 +216,13 @@ class Clientes extends MY_Controller
     public function excluir()
     {
         if (! $this->permission->checkPermission($this->session->userdata('permissao'), 'dCliente')) {
-            $this->session->set_flashdata('error', 'Você não tem permissão para excluir Usuários.');
+            $this->session->set_flashdata('error', 'Você não tem permissão para excluir o usuário.');
             redirect(base_url());
         }
 
         $id = $this->input->post('id');
         if ($id == null) {
-            $this->session->set_flashdata('error', 'Erro ao tentar excluir Usuário.');
+            $this->session->set_flashdata('error', 'Erro ao tentar excluir usuário.');
             redirect(site_url('clientes/gerenciar/'));
         }
 
@@ -222,7 +238,7 @@ class Clientes extends MY_Controller
         }
 
         $this->clientes_model->delete('clientes', 'idClientes', $id);
-        log_info('Removeu um Usuário. ID' . $id);
+        log_info('Removeu um usuário. ID' . $id);
 
         $this->session->set_flashdata('success', 'Usuário excluido com sucesso!');
         redirect(site_url('clientes/gerenciar/'));

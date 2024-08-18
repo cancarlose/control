@@ -21,7 +21,7 @@
                 <?php } ?>
 
             <div class="span3">
-                <input type="text" name="pesquisa" id="pesquisa" placeholder="Nome do cliente a pesquisar" class="span12" value="">
+                <input type="text" name="pesquisa" id="pesquisa" placeholder="Nome do usuário a pesquisar" class="span12" value="">
             </div>
             <div class="span2">
                 <select name="status" id="" class="span12">
@@ -56,7 +56,7 @@
                 <thead>
                     <tr>
                         <th>Nº</th>
-                        <th>Cliente</th>
+                        <th>Cliente/Técnico</th>
                         <th>Data da Venda</th>
                         <th>Vencimento da Garantia</th>
                         <th>Faturado</th>

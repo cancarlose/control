@@ -71,35 +71,54 @@ class Relatorios_model extends CI_Model
             $whereData .= 'AND dataCadastro <= ' . $this->db->escape($dataFinal);
         }
         if ($tipo != null) {
-            $whereData .= 'AND fornecedor = ' . $this->db->escape($tipo);
-        }
+            switch ($tipo) {
+                case 'fornecedor':
+                    $whereData .= 'AND fornecedor = 1';
+                    break;
+                case 'tecnico':
+                    $whereData .= 'AND tecnico = 1';
+                    break;
+                case 'auxiliar':
+                    $whereData .= 'AND auxiliar = 1';
+                    break;
+                default:
+                    break;
+            }
+            
         $query = "SELECT idClientes, nomeCliente, sexo, pessoa_fisica,
         documento, telefone, celular, contato, email, fornecedor,
-        dataCadastro, rua, numero, complemento, bairro, cidade, estado,
-        cep FROM clientes WHERE dataCadastro $whereData ORDER BY nomeCliente";
-
+        tecnico, auxiliar, dataCadastro, rua, numero, complemento,
+        bairro, cidade, estado, cep
+        FROM clientes WHERE dataCadastro $whereData ORDER BY nomeCliente";
+    
         return $this->db->query($query, [$dataInicial, $dataFinal])->result();
+        }
     }
-
-    public function clientesRapid($array = false)
+    
+    public function clientesRapid($array = false, $tipo = null)
     {
         $this->db->select('idClientes, nomeCliente, sexo, pessoa_fisica,
-        documento, telefone, celular, contato, email, fornecedor,
-        dataCadastro, rua, numero, complemento, bairro, cidade, estado,
-        cep');
-
+        documento, telefone, celular, contato, email, fornecedor, tecnico, auxiliar,
+        dataCadastro, rua, numero, complemento, bairro, cidade, estado, cep');
+    
+        // Aplicar filtro com base no tipo, se fornecido
+        if ($tipo != null) {
+            if ($tipo === 'fornecedor') {
+                $this->db->where('fornecedor', 1);
+            } elseif ($tipo === 'tecnico') {
+                $this->db->where('tecnico', 1);
+            } elseif ($tipo === 'auxiliar') {
+                $this->db->where('auxiliar', 1);
+            }
+        }
+    
         $this->db->order_by('nomeCliente', 'asc');
-
-        $this->db->select('idClientes, nomeCliente, sexo, pessoa_fisica,
-        documento, telefone, celular, contato, email, fornecedor,
-        dataCadastro, rua, numero, complemento, bairro, cidade, estado,
-        cep');
-
+    
         $result = $this->db->get('clientes');
         if ($array) {
             return $result->result_array();
         }
-
+    
         return $result->result();
     }
 
@@ -168,7 +187,7 @@ class Relatorios_model extends CI_Model
     {
         $this->db->select('clientes.idClientes, clientes.nomeCliente, produtos.idProdutos, produtos.descricao, itens_de_vendas.quantidade, vendas.idVendas as idRelacionado, vendas.dataVenda as dataOcorrencia, itens_de_vendas.preco, (itens_de_vendas.preco * itens_de_vendas.quantidade) as precoTotal, "venda" as origem');
         $this->db->from('vendas');
-        $this->db->join('itens_de_vendas', 'vendas.idVendas = itens_de_vendas.vendas_id');
+        $this->db->join('itens_de_vendas', 'vendas.idVendas = itens_de_vendas.vendas_iAd');
         $this->db->join('clientes', 'clientes.idClientes = vendas.clientes_id');
         $this->db->join('produtos', 'produtos.idProdutos = itens_de_vendas.produtos_id');
         $subQuery1 = $this->db->get_compiled_select();

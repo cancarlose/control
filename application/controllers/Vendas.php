@@ -536,6 +536,8 @@ class Vendas extends MY_Controller
                 'data_pagamento' => $recebimento,
                 'baixado' => $this->input->post('recebido') == 1 ? true : false,
                 'cliente_fornecedor' => set_value('cliente'),
+                'cliente_auxiliar' => set_value('cliente'),
+                'cliente_tecnico' => set_value('cliente'),
                 'forma_pgto' => $this->input->post('formaPgto'),
                 'tipo' => $this->input->post('tipo'),
                 'usuarios_id' => $this->session->userdata('id_admin'),
