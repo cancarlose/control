@@ -133,21 +133,6 @@ class Financeiro_model extends CI_Model
         }
     }
 
-    
-    public function autoCompleteClienteAuxiliar($q)
-    {
-        $this->db->select('DISTINCT(cliente_auxiliar) as cliente_auxiliar');
-        $this->db->limit(5);
-        $this->db->like('cliente_auxiliar', $q);
-        $query = $this->db->get('lancamentos');
-        if ($query->num_rows() > 0) {
-            foreach ($query->result_array() as $row) {
-                $row_set[] = ['label' => $row['cliente_auxiliar'], 'id' => $row['cliente_auxiliar']];
-            }
-            echo json_encode($row_set);
-        }
-    }
-
     public function autoCompleteClienteTecnico($q)
     {
         $this->db->select('DISTINCT(cliente_tecnico) as cliente_tecnico');

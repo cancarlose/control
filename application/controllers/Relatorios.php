@@ -93,7 +93,6 @@ class Relatorios extends MY_Controller
                 'Contato' => 'string',
                 'E-mail' => 'string',
                 'Fornecedor' => 'string',
-                'Auxiliar' => 'string',
                 'Tecnico' => 'string',
                 'Data de Cadastro' => 'YYYY-MM-DD',
                 'Rua' => 'string',
@@ -121,13 +120,6 @@ class Relatorios extends MY_Controller
                     $cliente['tecnico'] = 'sim';
                 } else {
                     $cliente['tecnico'] = 'não';
-                }
-                
-                // Tratamento para auxiliar
-                if ($cliente['auxiliar']) {
-                    $cliente['auxiliar'] = 'sim';
-                } else {
-                    $cliente['auxiliar'] = 'não';
                 }
           
                 // Tratamento para pessoa física
@@ -684,7 +676,6 @@ class Relatorios extends MY_Controller
                     'data_pagamento' => $item['data_pagamento'],
                     'baixado' => $item['baixado'],
                     'cliente_fornecedor' => $item['cliente_fornecedor'],
-                    'cliente_auxiliar' => $item['cliente_auxiliar'],
                     'cliente_tecnico' => $item['cliente_tecnico'],
                     'forma_pgto' => $item['forma_pgto'],
                     'tipo' => $item['tipo'],
@@ -702,7 +693,6 @@ class Relatorios extends MY_Controller
                 'Data Pagamento' => 'YYYY-MM-DD',
                 'Baixado' => 'integer',
                 'Cliente/Fornecedor' => 'string',
-                'Auxiliar' => 'string',
                 'Técnico' => 'string',
                 'Forma Pagamento' => 'string',
                 'Tipo' => 'string',
@@ -760,7 +750,6 @@ class Relatorios extends MY_Controller
                     'data_pagamento' => $item['data_pagamento'],
                     'baixado' => $item['baixado'],
                     'cliente_fornecedor' => $item['cliente_fornecedor'],
-                    'cliente_auxiliar' => $item['cliente_auxiliar'],
                     'cliente_tecnico' => $item['cliente_tecnico'],
                     'forma_pgto' => $item['forma_pgto'],
                     'tipo' => $item['tipo'],
@@ -778,7 +767,6 @@ class Relatorios extends MY_Controller
                 'Data Pagamento' => 'YYYY-MM-DD',
                 'Baixado' => 'integer',
                 'Cliente/Fornecedor' => 'string',
-                'Auxiliar' => 'string',
                 'Técnico' => 'string',
                 'Forma Pagamento' => 'string',
                 'Tipo' => 'string',

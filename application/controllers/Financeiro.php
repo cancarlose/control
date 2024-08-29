@@ -73,14 +73,6 @@ class Financeiro extends MY_Controller
                 $where .= " AND cliente_fornecedor LIKE '%{$cliente}%'";
             }
         }
-        
-        if (! empty($cliente)) {
-            if (empty($where)) {
-                $where = "cliente_auxiliar LIKE '%{$cliente}%'";
-            } else {
-                $where .= " AND cliente_auxiliar LIKE '%{$cliente}%'";
-            }
-        }
 
         if (! empty($cliente)) {
             if (empty($where)) {
@@ -169,7 +161,6 @@ class Financeiro extends MY_Controller
                 'data_pagamento' => $recebimento != null ? $recebimento : date('Y-m-d'),
                 'baixado' => $this->input->post('recebido') ?: 0,
                 'cliente_fornecedor' => set_value('cliente'),
-                'cliente_auxiliar' => set_value('cliente'),
                 'cliente_tecnico' => set_value('cliente'),
                 'forma_pgto' => $this->input->post('formaPgto'),
                 'tipo' => set_value('tipo'),
@@ -178,9 +169,6 @@ class Financeiro extends MY_Controller
             ];
             if (set_value('idFornecedor')) {
                 $data['clientes_id'] = set_value('idFornecedor');
-            }
-            if (set_value('idAuxiliar')) {
-                $data['clientes_id'] = set_value('idAuxiliar');
             }
             if (set_value('idTecnico')) {
                 $data['clientes_id'] = set_value('idTecnico');
@@ -289,7 +277,6 @@ class Financeiro extends MY_Controller
                         'data_pagamento' => $recebimento ?: date_format($myDateTime, 'Y-m-d'),
                         'baixado' => 0,
                         'cliente_fornecedor' => $this->input->post('cliente_parc'),
-                        'cliente_auxiliar' => $this->input->post('cliente_parc'),
                         'cliente_tecnico' => $this->input->post('cliente_parc'),
                         'clientes_id ' => $this->input->post('idCliente_parc'),
                         'observacoes' => $this->input->post('observacoes_parc'),
@@ -320,7 +307,6 @@ class Financeiro extends MY_Controller
                     'data_pagamento' => $dia_pgto != null ? $dia_pgto : date_format('Y-m-d'),
                     'baixado' => 1,
                     'cliente_fornecedor' => $this->input->post('cliente_parc'),
-                    'cliente_auxiliar' => $this->input->post('cliente_parc'),
                     'cliente_tecnico' => $this->input->post('cliente_parc'),
                     'clientes_id' => $this->input->post('idCliente_parc'),
                     'observacoes' => $this->input->post('observacoes_parc'),
@@ -360,7 +346,6 @@ class Financeiro extends MY_Controller
                         'data_pagamento' => date_format($myDateTime, 'Y-m-d'),
                         'baixado' => 0,
                         'cliente_fornecedor' => $this->input->post('cliente_parc'),
-                        'cliente_auxiliar' => $this->input->post('cliente_parc'),
                         'cliente_tecnico' => $this->input->post('cliente_parc'),
                         'observacoes' => $this->input->post('observacoes_parc'),
                         'forma_pgto' => $this->input->post('formaPgto_parc'),
@@ -435,7 +420,6 @@ class Financeiro extends MY_Controller
                 'data_pagamento' => $pagamento != null ? $pagamento : date('Y-m-d'),
                 'baixado' => $this->input->post('pago') ?: 0,
                 'cliente_fornecedor' => set_value('fornecedor'),
-                'cliente_auxiliar' => set_value('auxiliar'),
                 'cliente_tecnico' => set_value('tecnico'),
                 'forma_pgto' => $this->input->post('formaPgto'),
                 'tipo' => set_value('tipo'),
@@ -445,9 +429,6 @@ class Financeiro extends MY_Controller
 
             if (set_value('idFornecedor')) {
                 $data['clientes_id'] = set_value('idFornecedor');
-            }
-            if (set_value('idAuxiliar')) {
-                $data['clientes_id'] = set_value('idAuxiliar');
             }
             if (set_value('idTecnico')) {
                 $data['clientes_id'] = set_value('idTecnico');
@@ -482,7 +463,6 @@ class Financeiro extends MY_Controller
 
         $this->form_validation->set_rules('descricao', '', 'trim|required');
         $this->form_validation->set_rules('fornecedor', '', 'trim|required');
-        $this->form_validation->set_rules('auxiliar', '', 'trim|required');
         $this->form_validation->set_rules('tecnico', '', 'trim|required');
         $this->form_validation->set_rules('valor', '', 'trim|required');
         $this->form_validation->set_rules('vencimento', '', 'trim|required');
@@ -523,7 +503,6 @@ class Financeiro extends MY_Controller
                 'valor_desconto' => $valor_com_desconto,
                 'baixado' => $this->input->post('pago') ?: 0,
                 'cliente_fornecedor' => $this->input->post('fornecedor'),
-                'cliente_auxiliar' => $this->input->post('auxiliar'),
                 'cliente_tecnico' => $this->input->post('tecnico'),
                 'forma_pgto' => $this->input->post('formaPgto'),
                 'tipo' => $this->input->post('tipo'),
@@ -533,9 +512,6 @@ class Financeiro extends MY_Controller
 
             if (set_value('idFornecedor')) {
                 $data['clientes_id'] = set_value('idFornecedor');
-            }
-            if (set_value('idAuxiliar')) {
-                $data['clientes_id'] = set_value('idAuxiliar');
             }
             if (set_value('idTecnico')) {
                 $data['clientes_id'] = set_value('idTecnico');
@@ -569,7 +545,6 @@ class Financeiro extends MY_Controller
             'tipo_desconto' => 'real',
             'baixado' => $this->input->post('pago'),
             'cliente_fornecedor' => set_value('fornecedor'),
-            'cliente_auxiliar' => set_value('auxiliar'),
             'cliente_tecnico' => set_value('tecnico'),
             'forma_pgto' => $this->input->post('formaPgto'),
             'tipo' => $this->input->post('tipo'),
@@ -577,9 +552,6 @@ class Financeiro extends MY_Controller
         ];
         if (set_value('idFornecedor')) {
             $data['clientes_id'] = set_value('idFornecedor');
-        }
-        if (set_value('idAuxiliar')) {
-            $data['clientes_id'] = set_value('idAuxiliar');
         }
         if (set_value('idTecnico')) {
             $data['clientes_id'] = set_value('idTecnico');
@@ -624,14 +596,6 @@ class Financeiro extends MY_Controller
         if (isset($_GET['term'])) {
             $q = strtolower($_GET['term']);
             $this->financeiro_model->autoCompleteClienteFornecedor($q);
-        }
-    }
-
-    public function autoCompleteClienteAuxiliar()
-    {
-        if (isset($_GET['term'])) {
-            $q = strtolower($_GET['term']);
-            $this->financeiro_model->autoCompleteClienteAuxiliar($q);
         }
     }
 

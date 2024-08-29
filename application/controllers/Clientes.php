@@ -87,7 +87,6 @@ class Clientes extends MY_Controller
                 'cep' => set_value('cep'),
                 'dataCadastro' => date('Y-m-d'),
                 'fornecedor' => (set_value('fornecedor') == true ? 1 : 0),
-                'auxiliar' => (set_value('auxiliar') == true ? 1 : 0),
                 'tecnico' => (set_value('tecnico') == true ? 1 : 0),
             ];
 
@@ -148,7 +147,6 @@ class Clientes extends MY_Controller
                     'estado' => $this->input->post('estado'),
                     'cep' => $this->input->post('cep'),
                     'fornecedor' => (set_value('fornecedor') == true ? 1 : 0),
-                    'auxiliar' => (set_value('auxiliar') == true ? 1 : 0),
                     'tecnico' => (set_value('tecnico') == true ? 1 : 0),
                 ];
             } else {
@@ -167,7 +165,6 @@ class Clientes extends MY_Controller
                     'estado' => $this->input->post('estado'),
                     'cep' => $this->input->post('cep'),
                     'fornecedor' => (set_value('fornecedor') == true ? 1 : 0),
-                    'auxiliar' => (set_value('auxiliar') == true ? 1 : 0),
                     'tecnico' => (set_value('tecnico') == true ? 1 : 0),
                 ];
             }

@@ -112,7 +112,6 @@ class ClientesController extends REST_Controller
             'cep' => $this->post('cep', true),
             'dataCadastro' => date('Y-m-d'),
             'fornecedor' => $this->post('fornecedor', true) == true ? 1 : 0,
-            'auxiliar' => $this->post('auxiliar', true) == true ? 1 : 0,
             'tecnico' => $this->post('tecnico', true) == true ? 1 : 0,
         ];
 
@@ -162,7 +161,6 @@ class ClientesController extends REST_Controller
             'estado' => $this->put('estado', true),
             'cep' => $this->put('cep', true),
             'fornecedor' => $this->put('fornecedor', true) == true ? 1 : 0,
-            'auxiliar' => $this->post('auxiliar', true) == true ? 1 : 0,
             'tecnico' => $this->post('tecnico', true) == true ? 1 : 0,
         ];
 
