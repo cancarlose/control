@@ -48,7 +48,6 @@
                             <select name="tipocliente" class="span12">
                                 <option value="0">cliente</option>
                                 <option value="1">fornecedor</option>
-                                <option value="2">auxiliar</option>
                                 <option value="3">técnico</option>
                             </select>
                         </div>

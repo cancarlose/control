@@ -97,9 +97,6 @@
                     if ($r->fornecedor) {
                         $categoria = 'Fornecedor';
                         $cor = '#CDB380'; // Cor para Fornecedor
-                    } elseif ($r->auxiliar) {
-                        $categoria = 'Auxiliar';
-                        $cor = '#FFC107'; // Cor para Auxiliar
                     } elseif ($r->tecnico) {
                         $categoria = 'Técnico';
                         $cor = '#17A2B8'; // Cor para Técnico

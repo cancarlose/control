@@ -78,9 +78,6 @@ class Relatorios_model extends CI_Model
                 case 'tecnico':
                     $whereData .= ' AND tecnico = 1';
                     break;
-                case 'auxiliar':
-                    $whereData .= ' AND auxiliar = 1';
-                    break;
                 default:
                     // No filter for unknown types
                     break;
@@ -88,7 +85,7 @@ class Relatorios_model extends CI_Model
         }
 
         $query = "SELECT idClientes, nomeCliente, sexo, pessoa_fisica,
-        documento, telefone, celular, contato, email, fornecedor, auxiliar, tecnico,
+        documento, telefone, celular, contato, email, fornecedor, tecnico,
         dataCadastro, rua, numero, complemento, bairro, cidade, estado, cep
         FROM clientes WHERE 1=1 $whereData ORDER BY nomeCliente";
     
