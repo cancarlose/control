@@ -160,7 +160,7 @@
                 </div>
 
                 <div class="new-bottons">
-                    <a href="<?php echo base_url(); ?>index.php/clientes/adicionar" class="card tip-top" title="Add Clientes / Fornecedores / Técnicos / Auxiliares">
+                    <a href="<?php echo base_url(); ?>index.php/clientes/adicionar" class="card tip-top" title="Add Clientes / Fornecedores / Técnicos">
                         <div><i class='bx bxs-group iconBx'></i></div>
                         <div>
                             <div class="cardName2"><?= $this->db->count_all('clientes'); ?></div>
@@ -1050,7 +1050,6 @@
                                     <?php endif; ?>
                                 </td>
                                 <td class="text-truncate"><?php echo $lancamento->cliente_fornecedor; ?></td>
-                                <td class="text-truncate"><?php echo $lancamento->cliente_auxiliar; ?></td>
                                 <td class="text-truncate"><?php echo $lancamento->cliente_tecnico; ?></td>
                                 <td class="text-truncate"><?php echo $lancamento->descricao; ?></td>
                                 <td><?php echo date_format(date_create($lancamento->data_vencimento), 'd/m/Y'); ?></td>

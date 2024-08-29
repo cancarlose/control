@@ -72,8 +72,6 @@
                         // Verifica o tipo
                         if ($r->fornecedor == 1) {
                             echo '<td><span class="label label-primary">Fornecedor</span></td>';
-                        // } elseif ($r->auxiliar == 2 ) { 
-                        //     echo '<td><span class="label label-secondary">Auxiliar</span></td>';
                         // } elseif ($r->tecnico == 3 ) {
                         //     echo '<td><span class="label label-third">Técnico</span></td>';
                         } else {

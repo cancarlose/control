@@ -78,16 +78,13 @@ class Relatorios_model extends CI_Model
                 case 'tecnico':
                     $whereData .= 'AND tecnico = 1';
                     break;
-                case 'auxiliar':
-                    $whereData .= 'AND auxiliar = 1';
-                    break;
                 default:
                     break;
             }
             
         $query = "SELECT idClientes, nomeCliente, sexo, pessoa_fisica,
         documento, telefone, celular, contato, email, fornecedor,
-        tecnico, auxiliar, dataCadastro, rua, numero, complemento,
+        tecnico, dataCadastro, rua, numero, complemento,
         bairro, cidade, estado, cep
         FROM clientes WHERE dataCadastro $whereData ORDER BY nomeCliente";
     
@@ -98,7 +95,7 @@ class Relatorios_model extends CI_Model
     public function clientesRapid($array = false, $tipo = null)
     {
         $this->db->select('idClientes, nomeCliente, sexo, pessoa_fisica,
-        documento, telefone, celular, contato, email, fornecedor, tecnico, auxiliar,
+        documento, telefone, celular, contato, email, fornecedor, tecnico,
         dataCadastro, rua, numero, complemento, bairro, cidade, estado, cep');
     
         // Aplicar filtro com base no tipo, se fornecido
@@ -107,9 +104,6 @@ class Relatorios_model extends CI_Model
                 $this->db->where('fornecedor', 1);
             } elseif ($tipo === 'tecnico') {
                 $this->db->where('tecnico', 1);
-            } elseif ($tipo === 'auxiliar') {
-                $this->db->where('auxiliar', 1);
-            }
         }
     
         $this->db->order_by('nomeCliente', 'asc');

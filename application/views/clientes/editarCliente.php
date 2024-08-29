@@ -143,10 +143,6 @@
                                     <input type="checkbox" id="fornecedor" name="fornecedor" class="badgebox" value="1" <?= ($result->fornecedor == 1) ? 'checked' : '' ?>>
                                     <span class="badge">&check;</span>
                                 </label>
-                                <label for="auxiliar" class="btn btn-default">Auxiliar
-                                    <input type="checkbox" id="auxiliar" name="auxiliar" class="badgebox" value="0">
-                                    <span class="badge">&check;</span>
-                                </label>
                                 <label for="tecnico" class="btn btn-default">Técnico
                                     <input type="checkbox" id="tecnico" name="tecnico" class="badgebox" value="0">
                                     <span class="badge">&check;</span>
