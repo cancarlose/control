@@ -139,11 +139,11 @@
                             <label class="control-label">Tipo de Usuário</label>
                             <div class="controls">
                                 <label for="fornecedor" class="btn btn-default">Fornecedor
-                                    <input type="checkbox" id="fornecedor" name="fornecedor" class="badgebox" value="0">
+                                    <input type="checkbox" id="fornecedor" name="fornecedor" class="badgebox" value="1">
                                     <span class="badge">&check;</span>
                                 </label>
                                 <label for="tecnico" class="btn btn-default">Técnico
-                                    <input type="checkbox" id="tecnico" name="tecnico" class="badgebox" value="0">
+                                    <input type="checkbox" id="tecnico" name="tecnico" class="badgebox" value="3">
                                     <span class="badge">&check;</span>
                                 </label>
                             </div>
