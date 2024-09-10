@@ -46,7 +46,7 @@
                                     <?php
                                     if ($result->fornecedor == 1) {
                                         echo 'Fornecedor';
-                                    } elseif ($result->tecnico == 1) {
+                                    } elseif ($result->tecnico == 3) {
                                         echo 'Técnico';
                                     } else {
                                         echo 'Cliente';
