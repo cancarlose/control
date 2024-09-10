@@ -72,11 +72,11 @@
                         // Verifica o tipo
                         if ($r->fornecedor == 1) {
                             echo '<td><span class="label label-primary">Fornecedor</span></td>';
-                        // } elseif ($r->tecnico == 3 ) {
-                        //     echo '<td><span class="label label-third">Técnico</span></td>';
+                         } elseif ($r->tecnico == 3 ) {
+                            echo '<td><span class="label label-third">Técnico</span></td>';
                         } else {
-                            echo '<td><span class="label label-success">Cliente</span></td>';
-                        }
+                            echo '<td><span class="label label-successo">Cliente</span></td>';
+                        }   
 
                         echo '<td>';
                         if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vCliente')) {
