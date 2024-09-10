@@ -144,7 +144,7 @@
                                     <span class="badge">&check;</span>
                                 </label>
                                 <label for="tecnico" class="btn btn-default">Técnico
-                                    <input type="checkbox" id="tecnico" name="tecnico" class="badgebox" value="0">
+                                    <input type="checkbox" id="tecnico" name="tecnico" class="badgebox" value="0" <?= ($result->tecnico == 1) ? 'checked' : '' ?>>
                                     <span class="badge">&check;</span>
                             </div>
                         </div>
